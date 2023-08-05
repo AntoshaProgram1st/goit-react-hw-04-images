@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import css from './Modal.module.css';
 
 const Modal = ({ children, onClose }) => {
+  const handleBackdropClick = event => {
+    if (event.currentTarget === event.target) {
+      onClose();
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        onClose();
-      }
-    };
-    const handleBackdropClick = event => {
-      if (event.currentTarget === event.target) {
         onClose();
       }
     };
