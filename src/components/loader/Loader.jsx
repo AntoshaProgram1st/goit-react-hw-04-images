@@ -1,16 +1,15 @@
-import { Grid } from 'react-loader-spinner';
+import React from "react";
+import { ThreeDots } from "react-loader-spinner";
+import css from './Loader.module.css'; 
 
-export function Loader() {
-  return (
-    <Grid
-      height="80"
-      width="80"
-      color="#73e6ff"
-      ariaLabel="grid-loading"
-      radius="12.5"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-    />
-  );
+const Loader = () => {
+    return (
+        <ThreeDots            
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName={css.loader}
+            visible={true}
+        />
+    )
 }
+export default Loader;
