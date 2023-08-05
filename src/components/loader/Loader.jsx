@@ -1,12 +1,16 @@
-import { InfinitySpin } from 'react-loader-spinner';
-import css from './Loader.module.css'
+import { Grid } from 'react-loader-spinner';
 
-const Loader = () => {
-    return (
-        <div className={css.loader}>
-        <InfinitySpin width="200" color="#3f51b5" />
-      </div>
-    );
+export function Loader() {
+  return (
+    <Grid
+      height="80"
+      width="80"
+      color="#73e6ff"
+      ariaLabel="grid-loading"
+      radius="12.5"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+    />
+  );
 }
-
-export default Loader

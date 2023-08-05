@@ -1,33 +1,18 @@
-import css from './ImageGallery.module.css'
-import ImageGalleryItem from 'components/ImageGalleryItem';
-import PropTypes from 'prop-types';
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ items, toggleModal}) => {
+export function ImageGallery({ matches }) {
   return (
     <ul className={css.imageGallery}>
-      {items.map(({ id, webformatURL, largeImageURL, tags }) => {
-        return (
+      {matches.map(({ id, webformatURL, largeImageURL, tags }) => (
+        <li className={css.imageGalleryItem} key={id}>
           <ImageGalleryItem
-            key={id}
-            smallImg={webformatURL}
-            toggleModal={toggleModal}
-            largeImageURL={largeImageURL}
             alt={tags}
+            url={webformatURL}
+            modalURL={largeImageURL}
           />
-        );
-      })}
+        </li>
+      ))}
     </ul>
   );
-};
-
-export default ImageGallery;
-
-ImageGallery.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    webformatURL: PropTypes.string.isRequired,
-    largeImageURL: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired
-  })).isRequired,
-  toggleModal: PropTypes.func.isRequired
 }

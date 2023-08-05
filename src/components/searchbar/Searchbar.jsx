@@ -1,28 +1,50 @@
+import React, { useState } from 'react';
+import { ImSearch } from 'react-icons/im';
+import { toast } from 'react-toastify';
 import css from './Searchbar.module.css';
-import { GrSearch } from 'react-icons/gr';
 import PropTypes from 'prop-types';
 
-const Searchbar = ({ onSubmit }) => {
+export const Searchbar = ({ onSubmit }) => {
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (query.trim() === '') {
+      toast.error('Enter your query!');
+      return;
+    }
+
+    onSubmit(query);
+    setQuery('');
+  };
+
+  const handleChange = e => {
+    setQuery(e.currentTarget.value.toLowerCase());
+  };
+
   return (
     <header className={css.searchbar}>
-      <form className={css.searchForm} onSubmit={onSubmit}>
-        <button type="submit" className={css.searchFormButton}>
-          <span className={css.searchFormButtonLabel}>Search</span>
-          <GrSearch className={css.searchFormButtonIcon} />
+      <form onSubmit={handleSubmit} className={css.searchForm}>
+        <button type="submit" className={css.searchForm_button}>
+          <span>
+            <ImSearch />
+          </span>
         </button>
 
         <input
-          className={css.searchFormInput}
+          onChange={handleChange}
+          className={css.searchForm_input}
+          name="query"
           type="text"
+          autoComplete="off"
+          autoFocus
+          value={query}
           placeholder="Search images and photos"
         />
       </form>
     </header>
   );
 };
-
-export default Searchbar;
-
 Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-}
+  onSubmit: PropTypes.func.isRequired,
+};

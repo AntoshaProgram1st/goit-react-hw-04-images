@@ -1,40 +1,37 @@
-import css from './Modal.module.css';
 import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import css from './Modal.module.css';
 
-const modalRoot = document.querySelector('#modal-root');
+export const Modal = ({ largeURL, alt, closeModal }) => {
+  useEffect(() => {
+    const handleESC = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    };
+    document.addEventListener('keydown', handleESC);
+    return () => {
+      document.removeEventListener('keydown', handleESC);
+    };
+  }, [closeModal]);
 
-export function Modal({ onClose, children }) {
-
-    useEffect(() => {
-        const handleKeydown = e => {
-          if (e.code === 'Escape') {
-            onClose();
-          }
-        };
-
-        window.addEventListener('keydown', handleKeydown);
-
-        return () => {
-            window.removeEventListener('keydown', handleKeydown);
-        }
-    }, [onClose])
-
-    const handleBackdropClick = (e) => {
-        if (e.currentTarget === e.target) onClose();
+  const handleOverlayClick = e => {
+    if (e.currentTarget === e.target) {
+      closeModal();
     }
+  };
 
-    return createPortal(
-      <div className={css.overlay} onClick={handleBackdropClick}>
-        <div className={css.modal}>
-          {children}
-        </div>
-      </div>,
-      modalRoot
-    );   
-}
+  return (
+    <div className={css.overlay} onClick={handleOverlayClick}>
+      <div className={css.modal}>
+        <img src={largeURL} alt={alt} />
+      </div>
+    </div>
+  );
+};
 
 Modal.propTypes = {
-    onClose: PropTypes.func.isRequired,
-}
+  largeURL: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};
