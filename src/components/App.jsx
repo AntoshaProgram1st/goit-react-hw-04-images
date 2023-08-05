@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Searchbar } from './Searchbar/Searchbar';
+import { Searchbar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { ToastContainer } from 'react-toastify';
 import css from './App.module.css';
