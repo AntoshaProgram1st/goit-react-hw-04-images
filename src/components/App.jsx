@@ -5,8 +5,8 @@ import { ToastContainer } from 'react-toastify';
 import css from './App.module.css';
 import { toast } from 'react-toastify';
 import { fetchPics } from '../components/Api/Api';
-import { Loader } from './Loader/Loader';
-import { Button } from './Button/Button';
+import { Loader } from 'components/Loader/Loader';
+import { Button } from 'components/Button/Button';
 
 export const App = () => {
   const [matches, setMatches] = useState([]);
