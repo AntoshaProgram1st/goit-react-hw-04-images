@@ -1,34 +1,20 @@
-import React, { useState } from "react";
-import css from "./Searchbar.module.css";
+import css from './Searchbar.module.css';
+import { GrSearch } from 'react-icons/gr';
+import PropTypes from 'prop-types';
 
-const Searchbar = ({ handleSearch }) => {
-  const [value, setValue] = useState("");
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleSearch(value);
-  };
-
+const Searchbar = ({ onSubmit }) => {
   return (
     <header className={css.searchbar}>
-      <form className={css.form} onSubmit={handleSubmit}>
-        <button type="submit" className={css.button}>
-          <div className={css["button-label"]}>
-            <div className={css.icon}></div>
-          </div>
+      <form className={css.searchForm} onSubmit={onSubmit}>
+        <button type="submit" className={css.searchFormButton}>
+          <span className={css.searchFormButtonLabel}>Search</span>
+          <GrSearch className={css.searchFormButtonIcon} />
         </button>
+
         <input
-          className={css.input}
+          className={css.searchFormInput}
           type="text"
-          autoComplete="off"
-          autoFocus
           placeholder="Search images and photos"
-          onChange={handleChange}
-          value={value}
         />
       </form>
     </header>
@@ -36,3 +22,7 @@ const Searchbar = ({ handleSearch }) => {
 };
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+}

@@ -1,15 +1,12 @@
-import React from "react";
-import { ThreeDots } from "react-loader-spinner";
-import css from './Loader.module.css'; 
+import { InfinitySpin } from 'react-loader-spinner';
+import css from './Loader.module.css'
 
 const Loader = () => {
     return (
-        <ThreeDots            
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClassName={css.loader}
-            visible={true}
-        />
-    )
+        <div className={css.loader}>
+        <InfinitySpin width="200" color="#3f51b5" />
+      </div>
+    );
 }
-export default Loader;
+
+export default Loader

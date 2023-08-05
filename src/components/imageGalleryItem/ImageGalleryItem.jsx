@@ -1,29 +1,23 @@
-import { useState } from "react";
 import css from './ImageGalleryItem.module.css';
-import Modal from "components/modal/Modal";
+import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ imageUrl, alt, id, largeImageURL } ) => {
-    const [showModal, setShowModal] = useState(false)
-    
-    
-    const toggleModal = () => {      
-    setShowModal(prevShowModal => !prevShowModal);
-  };   
-
-    return (
-        <li className={css['gallery-item']} key={id}>
-            <img
-                className={css['gallery-item__image']}
-                src={imageUrl}
-                    alt={alt}
-                    onClick={toggleModal}
-            />
-            {showModal && <Modal onClose={toggleModal} largeImageURL={largeImageURL} alt={alt}>
-                <img src={largeImageURL} alt={alt} />                     
-            </Modal>}                
-        </li>
-    );
-    
-} 
+const ImageGalleryItem = ({ smallImg, toggleModal, largeImageURL, alt}) => {
+  return (
+    <li className={css.ImageGalleryItem} onClick={()=>toggleModal(largeImageURL, alt)} >
+      <img
+        src={smallImg}
+        alt={alt}
+        className={css.imageGalleryItemImage}
+      />
+    </li>
+  );
+};
 
 export default ImageGalleryItem;
+
+ImageGalleryItem.propTypes = {
+  smallImg: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired
+};
