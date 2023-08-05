@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Searchbar } from './components/Searchbar/Searchbar';
-import { ImageGallery } from './components/ImageGallery/ImageGallery';
+import  Searchbar  from './Searchbar/Searchbar';
+import  ImageGallery  from './ImageGallery/ImageGallery';
 import { ToastContainer } from 'react-toastify';
 import css from './App.module.css';
 import { toast } from 'react-toastify';
 import { fetchPics } from '../components/Api/Api';
-import { Loader } from './components/Loader/Loader';
-import { Button } from './components/Button/Button';
+import  Loader  from './Loader/Loader';
+import  Button  from './Button/Button';
 
 export const App = () => {
   const [matches, setMatches] = useState([]);
